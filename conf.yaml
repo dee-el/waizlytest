@@ -1,0 +1,38 @@
+Server:
+  Port: ":8080"
+  BasePath: ""
+  GracefulTimeout: 15
+  ReadTimeout: 30
+  WriteTimeout: 30
+  APITimeout: 30
+
+DB:
+  RetryInterval: 10
+  MaxIdleConn: 30
+  MaxConn: 60
+  DSN: "postgresql://core:password@127.0.0.1:5432/waizly?sslmode=disable"
+
+Cert:
+  Public: |
+    -----BEGIN PUBLIC KEY-----
+    MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCOqXTycDGJ50wv+hXPyj0dzDwQ
+    tB6jQAYC2gqRc6VN29kolhQG3xfbz/elrmfg7HPuBONZRmOGJETtSXQQ1Ld4IXAZ
+    Lt/gbkfA3bHPa6z2UHrqe/fOpHRNHTl56fLblJjDkH5Vipow3xlm4wFrSTAfp8WA
+    zK8po+6Ye19K4gXqLQIDAQAB
+    -----END PUBLIC KEY-----
+  Private: |
+    -----BEGIN RSA PRIVATE KEY-----
+    MIICXAIBAAKBgQCOqXTycDGJ50wv+hXPyj0dzDwQtB6jQAYC2gqRc6VN29kolhQG
+    3xfbz/elrmfg7HPuBONZRmOGJETtSXQQ1Ld4IXAZLt/gbkfA3bHPa6z2UHrqe/fO
+    pHRNHTl56fLblJjDkH5Vipow3xlm4wFrSTAfp8WAzK8po+6Ye19K4gXqLQIDAQAB
+    AoGAJvlEabcc0X/O4IyByPKHH8zb2/RZKmAjREQs/u+JCWw2N1BIyFfKPNLj5O9w
+    kZIHWc8cDReduNfPvMOEYdS7Cj4BbnUEiOVNgX4wKH62ukPqBLzOBJ8LNc3LcGuz
+    EOm/QTCA8T5+NVQgvJfylUoOChwa/8j52WwkmKOuChkL5EECQQDKYkJKh+wQqU2o
+    V1AzQeFfQauZl+Topzkv3DRQz5zAwuqAXxb50BWvU8Ya5Uk9Jb6aMfXdAtzXlYQi
+    nQwV4+b7AkEAtHTWzLylTCP1Nu5rVUFQ9UfDegN3ndV5JWWIhwO5Cg2DRopJU3xE
+    j8VjkwuzXh+YgB6ydSPqVskcdtyWFqDK9wJBAJ+D2Oozvc3YE7x2rWDpMUDKWv2h
+    qivx+fIOJzH2oX+RYhGyYUKfTyg06HU0eYh3ooaYkEgVxIkrcM1zaR4r1lcCQCpG
+    /VP2FlviSL7X2LmeldMBPyDE0y9dJgbG5NeM3bsnM0xBdbBjesScIBoBMcKpcFcD
+    2hdrlKlEcLDAOUGP5j0CQD2GjEumeGtExzxX7HVAw/zl3RRPWg+YVDHLJrfg6iXl
+    c7C6DjFC0O5Kp32ysYKPkJQrObMfux5cyzfGib2OgX8=
+    -----END RSA PRIVATE KEY-----

@@ -1,0 +1,78 @@
+-- FETCH ALL DATA FROM TABLE `employees`
+SELECT * FROM `employees`;
+
+-- FETCH TOTAL DATA FROM TABLE `employees` WHERE `job_title` IS "Manager"
+SELECT COUNT(*) AS cnt 
+FROM `employees` 
+WHERE `job_title` = 'Manager';
+
+-- FETCH DATA FROM TABLE `employees` WHERE `department` IS "Sales" OR "Marketing"
+SELECT `name`, `salary`, `department` 
+FROM `employees` 
+WHERE `departmeny` IN ('Sales', 'Marketing');
+
+-- FETCH AVERAGE EMPLOYEES SALARY THAT JOINED LAST 5 YEARS
+SELECT AVG(salary) AS average_salary
+FROM `employees`
+WHERE `joined_date` >= CURRENT_DATE - INTERVAL '5 years';
+
+-- FETCH TOP 5 EMPLOYEES WITH HIGHEST SALES
+SELECT e.employee_id, e.name, SUM(sd.sales) AS total_sales
+FROM `employees` e
+    JOIN `sales_data` sd ON e.employee_id = sd.employee_id
+GROUP BY 1, 2
+ORDER BY total_sales DESC
+LIMIT 5;
+
+-- FETCH EMPLOYEES THAT HAS SALARY MORE THAN AVERAGE DEPARTMENT SALARY
+
+---- USE CTE
+WITH department_avg_salary AS (
+  SELECT department, AVG(salary) AS avg_salary
+  FROM `employees`
+  GROUP BY department
+)
+
+SELECT e.name, e.salary, avg_dept.avg_salary AS avg_department_salary
+FROM employees e
+    JOIN department_avg_salary avg_dept ON e.department = avg_dept.department
+WHERE e.salary > avg_dept.avg_salary;
+
+
+-- FETCH EMPLOYEES RANK BASED ON SALES
+---- USE CTE
+WITH SalesSummary AS (
+  SELECT
+    e.name,
+    SUM(sd.sales) AS total_sales
+  FROM
+    employees e
+    JOIN sales_data sd ON e.employee_id = sd.employee_id
+  GROUP BY
+    e.name
+)
+
+SELECT
+  name,
+  total_sales,
+  RANK() OVER (ORDER BY total_sales DESC) AS sales_rank
+FROM SalesSummary;
+
+-- STORE PROCEDURE TO FETCH EMPLOYEE ON DEPARTMENT
+CREATE OR REPLACE FUNCTION GetEmployeeSalaryByDepartment(department_name VARCHAR)
+RETURNS TABLE (
+    employee_name VARCHAR,
+    salary NUMERIC
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT
+        e.employee_name,
+        e.salary
+    FROM
+        employees e
+        JOIN departments d ON e.department_id = d.department_id
+    WHERE
+        d.department_name = department_name;
+END;
+$$ LANGUAGE plpgsql;
