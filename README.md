@@ -30,8 +30,8 @@ Before running the application, ensure you have the following installed:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/dee-el/paperwallet
-   cd paperwallet
+   git clone https://github.com/dee-el/waizlytest
+   cd waizlytest
    ```
 
 2. Install dependencies:
