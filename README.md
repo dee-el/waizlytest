@@ -2,7 +2,7 @@
 
 ## Table of Contents
 
-- [Go Wallet Application](#go-wallet-application)
+- [Go USer Application](#go-user-application)
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Prerequisites](#prerequisites)
